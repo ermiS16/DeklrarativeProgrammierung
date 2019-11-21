@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="hska.deklarativeProgrammierung"
+	targetNamespace="hska.deklarativeProgrammierung"
+	elementFormDefault="qualified">
+
+	<xs:element name="RECHNUNGEN">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RECHNUNG" minOccurs="1"
+					maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="UNTERNEHMEN">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="NAME" type="xs:string" />
+										<xs:element name="ADRESSE">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="STRASSE" type="xs:string" />
+													<xs:element name="HAUSNUMMER" type="xs:string" />
+													<xs:element name="PLZ">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="4" />
+																<xs:pattern value="([A-Z][A-Z]-)?[0-9]{4,7}" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="ORT" type="xs:string" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="TELEFON" type="xs:string" minOccurs="0"/>
+										<xs:element name="FAX" type="xs:string" minOccurs="0"/>
+										<xs:element name="EMAIL" type="xs:string" minOccurs="0"/>
+										<xs:element name="STEUERNUMMER" type="xs:string" />
+										<xs:element name="ZAHLUNGSMOEGLICHKEITEN">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="BANKVERBINDUNG" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="BANK" type="xs:string" minOccurs="0"/>
+																<xs:element name="IBAN" type="xs:string" minOccurs="0"/>
+																<xs:element name="BIC" type="xs:string" minOccurs="0"/>
+																<xs:element name="BLZ" type="xs:string" minOccurs="0"/>
+																<xs:element name="KONTONUMMER" type="xs:string" minOccurs="0"/>
+																<xs:element name="KONTOINHABER" type="xs:string" minOccurs="0"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="BITCOIN_ADRESSE" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="WALLET" type="xs:string" minOccurs="0"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+
+							<xs:element name="ADRESSAT">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ANREDE" type="xs:string" />
+										<xs:element name="NAME" type="xs:string" />
+										<xs:element name="ADRESSE">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="STRASSE" type="xs:string" />
+													<xs:element name="HAUSNUMMER" type="xs:string" />
+													<xs:element name="PLZ">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="4" />
+																<xs:pattern value="([A-Z][A-Z]-)?[0-9]{4,7}" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="ORT" type="xs:string" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+
+							<xs:element name="RECHNUNGSDETAILS">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RECHNUNGSDATUM" type="xs:date" />
+										<xs:element name="RECHNUNGSNUMMER" type="xs:string" />
+										<xs:element name="BETRAG">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="BRUTTO_GESAMT" type="xs:decimal"/>
+													<xs:element name="NETTO_GESAMT" type="xs:decimal" minOccurs="0"/>
+													<xs:element name="MWST_GESAMT" type="xs:decimal" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="WAEHRUNG" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+
+							<xs:element name="PRODUKTE">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="PRODUKT" minOccurs="1"
+											maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="POSITION" type="xs:unsignedInt"/>
+													<xs:element name="ART" type="xs:string" />
+													<xs:element name="EINZELPREIS" type="xs:string" minOccurs="0"/>
+													<xs:element name="GESAMTPREIS" type="xs:string" />
+													<xs:element name="MWST_PROZENT" type="xs:unsignedInt" minOccurs="0"/>
+													<xs:element name="DATUM" type="xs:date"/>
+												</xs:sequence>
+												<xs:attribute name="menge" type="xs:string"
+													use="required" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
