@@ -20,6 +20,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -33,7 +34,8 @@ public class Main {
 			"//RECHNUNG[sum(PRODUKTE/PRODUKT/GESAMTPREIS/text()) != RECHNUNGSDETAILS/BETRAG/BRUTTO_GESAMT/text()]",
 			"//RECHNUNG[contains(ADRESSAT/ANDREDE, 'Herr')] | //RECHNUNG[contains(ADRESSAT/ANREDE, 'Frau')]",
 			"//RECHNUNG[RECHNUNGSDETAILS/BETRAG/BRUTTO_GESAMT/text() > 1000]",
-			"//RECHNUNG[RECHNUNGSDETAILS/BETRAG/BRUTTO_GESAMT/text() > sum(//BRUTTO_GESAMT/text()) div count(//RECHNUNG)]"
+			"//RECHNUNG[RECHNUNGSDETAILS/BETRAG/BRUTTO_GESAMT/text() > sum(//BRUTTO_GESAMT/text()) div count(//RECHNUNG)]",
+			"//RECHNUNG[RECHNUNGSDETAILS/RECHNUNGSDATUM[translate(./text(), '-', '') > 20101231]]"
 	};
 	
 	private static final String[] tasks = {
@@ -45,7 +47,8 @@ public class Main {
 			"Jede Rechnung, bei der die Summe der Gesamtpreise der Positionen ungleich dem Rechnungsbruttobetrag ist",
 			"Jede Rechnung, die in der Anrede der Empfaengeradresse den Text 'Herr' oder 'Frau' enthaehlt.",
 			"Jede Rechnung mit einem Brutto-Gesamtbetrag über 1000.00 Euro",
-			"Jede Rechnung mit einem Brutto-Gesamtbetrag über dem Durchschnittlichen Brutto-Gesamtbetrag aller Rechnungen"
+			"Jede Rechnung mit einem Brutto-Gesamtbetrag über dem Durchschnittlichen Brutto-Gesamtbetrag aller Rechnungen",
+			"Jede Rechnung dessen Austellungsjahr größer als 2010 ist"
 	};
 	
 	public static void main(String[] args) {
@@ -86,7 +89,6 @@ public class Main {
 	private static NodeList extractExpressions(String expression, Document doc, XPath xPath) throws XPathExpressionException {
 		XPathExpression expr = xPath.compile(expression);		
 		return (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
-		
 	}
 	
 	/**
@@ -98,7 +100,7 @@ public class Main {
 		for(NodeList list : nodeLists) {
 			System.out.println("Aufgabe " + (index+1) + ": " + tasks[index]);
 			for(int i=0; i<list.getLength(); i++) {
-				System.out.println(list.item(i).getTextContent());
+				System.out.println(list.item(i).getTextContent());					
 			}
 			index++;
 			System.out.println();
