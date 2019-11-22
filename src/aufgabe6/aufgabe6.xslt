@@ -30,6 +30,24 @@
 								</xsl:if>
 							</xsl:copy>
 						</xsl:for-each>
+						
+						<xsl:for-each select="RECHNUNGSDETAILS">
+							<xsl:copy>
+								<xsl:for-each select="./*">
+									<xsl:if test="name(.) = 'BETRAG'">
+										<xsl:for-each select="./*">
+											<xsl:if test="name(.) = 'BRUTTO_GESAMT'">
+												<xsl:copy-of select="." />
+											</xsl:if>
+										</xsl:for-each>
+									</xsl:if>
+									<xsl:if test="name(.) = 'RECHNUNGSDATUM' or name(.) = 'RECHNUNGSNUMMER'">
+										<xsl:copy-of select="." />
+									</xsl:if>
+								</xsl:for-each>
+							</xsl:copy>
+						</xsl:for-each>
+						
 					</xsl:copy>
 				</xsl:if>
 			</xsl:for-each>
