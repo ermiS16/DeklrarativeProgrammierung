@@ -18,6 +18,18 @@
 								</xsl:for-each>
 							</xsl:copy>
 						</xsl:for-each>
+						
+						<xsl:for-each select="ADRESSAT">
+							<xsl:copy>
+								<xsl:if test="./ANREDE = 'Herr' or ./ANREDE = 'Frau'">
+									<xsl:for-each select="./*">
+										<xsl:if test="name(.) = 'ADRESSE'">
+											<xsl:copy-of select="." />
+										</xsl:if>
+									</xsl:for-each>
+								</xsl:if>
+							</xsl:copy>
+						</xsl:for-each>
 					</xsl:copy>
 				</xsl:if>
 			</xsl:for-each>
