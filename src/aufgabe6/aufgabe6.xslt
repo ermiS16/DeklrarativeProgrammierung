@@ -53,7 +53,7 @@
 								<xsl:for-each select="./*">
 									<xsl:if test="name(.) ='POSITION'">
 										<xsl:copy>
-											<xsl:copy-of select="position()" />
+											<xsl:copy-of select="../." />
 										</xsl:copy>
 									</xsl:if>
 									<xsl:if test="name(.) = 'ART' or name(.) = 'GESAMTPREIS'">
