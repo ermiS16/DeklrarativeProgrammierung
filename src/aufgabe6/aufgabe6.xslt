@@ -48,6 +48,21 @@
 							</xsl:copy>
 						</xsl:for-each>
 						
+						<xsl:for-each select="PRODUKTE/PRODUKT">
+							<xsl:copy>
+								<xsl:for-each select="./*">
+									<xsl:if test="name(.) ='POSITION'">
+										<xsl:copy>
+											<xsl:copy-of select="position()" />
+										</xsl:copy>
+									</xsl:if>
+									<xsl:if test="name(.) = 'ART' or name(.) = 'GESAMTPREIS'">
+										<xsl:copy-of select="." />
+									</xsl:if>
+								</xsl:for-each>
+							</xsl:copy>
+						</xsl:for-each>
+						
 					</xsl:copy>
 				</xsl:if>
 			</xsl:for-each>
