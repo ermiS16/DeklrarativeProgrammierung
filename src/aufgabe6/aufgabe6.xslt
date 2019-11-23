@@ -23,7 +23,7 @@
 							<xsl:copy>
 								<xsl:if test="./ANREDE = 'Herr' or ./ANREDE = 'Frau'">
 									<xsl:for-each select="./*">
-										<xsl:if test="name(.) = 'ADRESSE'">
+										<xsl:if test="name(.) = 'ADRESSE' or name(.) = 'ANREDE' or name(.) ='NAME'">
 											<xsl:copy-of select="." />
 										</xsl:if>
 									</xsl:for-each>
@@ -48,17 +48,19 @@
 							</xsl:copy>
 						</xsl:for-each>
 						
-						<xsl:for-each select="PRODUKTE/PRODUKT">
+						<xsl:for-each select="PRODUKTE">
 							<xsl:copy>
-								<xsl:for-each select="./*">
-									<xsl:if test="name(.) ='POSITION'">
-										<xsl:copy>
-											<xsl:copy-of select="../." />
-										</xsl:copy>
-									</xsl:if>
-									<xsl:if test="name(.) = 'ART' or name(.) = 'GESAMTPREIS'">
-										<xsl:copy-of select="." />
-									</xsl:if>
+								<xsl:for-each select="PRODUKT">
+									<xsl:copy>
+										<POSITION>
+											<xsl:copy-of select="position()" />											
+										</POSITION>
+										<xsl:for-each select="./*">
+											<xsl:if test="name(.) = 'ART' or name(.) = 'GESAMTPREIS'">
+												<xsl:copy-of select="." />
+											</xsl:if>
+										</xsl:for-each>
+									</xsl:copy>
 								</xsl:for-each>
 							</xsl:copy>
 						</xsl:for-each>
