@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RECHNUNGEN xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<RECHNUNGEN
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<RECHNUNG>
 		<UNTERNEHMEN>
 			<NAME>Kleintier Meier GmbH</NAME>
@@ -182,7 +183,16 @@
 			</ADRESSE>
 			<STEUERNUMMER>DE112233449</STEUERNUMMER>
 		</UNTERNEHMEN>
-		<ADRESSAT />
+		<ADRESSAT>
+			<ANREDE>Herr</ANREDE>
+			<NAME>Müller-Lüdenscheid</NAME>
+			<ADRESSE>
+				<STRASSE>Badstrasse</STRASSE>
+				<HAUSNUMMER>3</HAUSNUMMER>
+				<PLZ>17777</PLZ>
+				<ORT>Dammhausen</ORT>
+			</ADRESSE>
+		</ADRESSAT>
 		<RECHNUNGSDETAILS>
 			<RECHNUNGSDATUM>2016-12-31</RECHNUNGSDATUM>
 			<RECHNUNGSNUMMER>47-11</RECHNUNGSNUMMER>
