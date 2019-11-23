@@ -34,8 +34,7 @@ public class Main {
 			"//RECHNUNG[sum(PRODUKTE/PRODUKT/GESAMTPREIS/text()) != RECHNUNGSDETAILS/BETRAG/BRUTTO_GESAMT/text()]",
 			"//RECHNUNG[contains(ADRESSAT/ANDREDE, 'Herr')] | //RECHNUNG[contains(ADRESSAT/ANREDE, 'Frau')]",
 			"//RECHNUNG[RECHNUNGSDETAILS/BETRAG/BRUTTO_GESAMT/text() > 1000]",
-			"//RECHNUNG[RECHNUNGSDETAILS/BETRAG/BRUTTO_GESAMT/text() > sum(//BRUTTO_GESAMT/text()) div count(//RECHNUNG)]",
-			"//RECHNUNG[RECHNUNGSDETAILS/RECHNUNGSDATUM[translate(./text(), '-', '') > 20101231]]"
+			"//RECHNUNG[RECHNUNGSDETAILS/BETRAG/BRUTTO_GESAMT/text() > sum(//BRUTTO_GESAMT/text()) div count(//RECHNUNG)]"
 	};
 	
 	private static final String[] tasks = {
@@ -47,8 +46,7 @@ public class Main {
 			"Jede Rechnung, bei der die Summe der Gesamtpreise der Positionen ungleich dem Rechnungsbruttobetrag ist",
 			"Jede Rechnung, die in der Anrede der Empfaengeradresse den Text 'Herr' oder 'Frau' enthaehlt.",
 			"Jede Rechnung mit einem Brutto-Gesamtbetrag über 1000.00 Euro",
-			"Jede Rechnung mit einem Brutto-Gesamtbetrag über dem Durchschnittlichen Brutto-Gesamtbetrag aller Rechnungen",
-			"Jede Rechnung dessen Austellungsjahr größer als 2010 ist"
+			"Jede Rechnung mit einem Brutto-Gesamtbetrag über dem Durchschnittlichen Brutto-Gesamtbetrag aller Rechnungen"
 	};
 	
 	public static void main(String[] args) {

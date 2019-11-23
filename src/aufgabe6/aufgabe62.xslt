@@ -16,7 +16,7 @@
 		<xsl:text>Danke für die Zahlung von</xsl:text>
 		<xsl:text><xsl:value-of select="RECHNUNGSDETAILS/BRUTTO_GESAMT"/> </xsl:text>
 		<xsl:text> für die Rechnung vom </xsl:text>
-		<xsl:text><xsl:value-of select="RECHNUNGSDETAILS/RECHNUNGSDATUM"/></xsl:text><xsl:text>.
+		<xsl:text><xsl:value-of select="RECHNUNGSDETAILS/RECHNUNGSDATUM[translate(./text(),'-','.')]"/></xsl:text><xsl:text>.
 		</xsl:text>
 		<xsl:text>Ich hoffe die </xsl:text>
 		<xsl:text><xsl:value-of select="count(PRODUKTE/PRODUKT)" /></xsl:text>

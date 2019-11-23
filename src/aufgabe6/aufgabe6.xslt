@@ -21,7 +21,7 @@
 						
 						<xsl:for-each select="ADRESSAT">
 							<xsl:copy>
-								<xsl:if test="./ANREDE = 'Herr' or ./ANREDE = 'Frau'">
+								<xsl:if test="./ANREDE[starts-with(., 'Herr')] or ./ANREDE[starts-with(., 'Frau')]">
 									<xsl:for-each select="./*">
 										<xsl:if test="name(.) = 'ADRESSE' or name(.) = 'ANREDE' or name(.) ='NAME'">
 											<xsl:copy-of select="." />
