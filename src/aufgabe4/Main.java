@@ -43,7 +43,7 @@ public class Main {
 			
 			result += empfaenger.getANREDE() + " " + empfaenger.getNAME() + ",\n"
 					+ "bitte zahlen Sie endlich den geforderten Betrag\n"
-					+ "von " + betrag.getBRUTTOGESAMT() + rechnungsdetails.getWAEHRUNG()
+					+ "von " + betrag.getNETTOGESAMT() + rechnungsdetails.getWAEHRUNG()
 					+ " auf das Konto\n"
 					+ bankString(bankverbindung) + " ein.\n";
 			if(unternehmen.getTELEFON() != null) {
