@@ -9,21 +9,11 @@
 			<xsl:for-each select="RECHNUNG">
 				<xsl:if	test="RECHNUNGSDETAILS/RECHNUNGSDATUM[translate(./text(), '-', '') > 20101231]">
 					<xsl:copy>
-						<xsl:for-each select="UNTERNEHMEN">
-							<xsl:copy>
-								<xsl:for-each select="./*">
-									<xsl:if test="name(.) != 'ZAHLUNGSMOEGLICHKEITEN'">
-										<xsl:copy-of select="." />
-									</xsl:if>
-								</xsl:for-each>
-							</xsl:copy>
-						</xsl:for-each>
-						
 						<xsl:for-each select="ADRESSAT">
 							<xsl:copy>
 								<xsl:if test="./ANREDE[starts-with(., 'Herr')] or ./ANREDE[starts-with(., 'Frau')]">
 									<xsl:for-each select="./*">
-										<xsl:if test="name(.) = 'ADRESSE' or name(.) = 'ANREDE' or name(.) ='NAME'">
+										<xsl:if test="name(.) = 'ADRESSE'">
 											<xsl:copy-of select="." />
 										</xsl:if>
 									</xsl:for-each>
