@@ -3,9 +3,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:output method="text"/>
 <xsl:template match="/">
-<!-- 
-	<xsl:apply-templates select="RECHNUNGEN/RECHNUNG[RECHNUNGSDETAILS/BETRAG/BRUTTO_GESAMT &lt; 1000]"/>
- -->
 	<xsl:apply-templates select="RECHNUNGEN/RECHNUNG[(RECHNUNGSDETAILS/BETRAG/BRUTTO_GESAMT &lt; 1000) and (ADRESSAT/ANREDE != '')]"/>
 </xsl:template>
 
