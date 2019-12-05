@@ -4,60 +4,28 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<xsl:output method="xml" encoding="UTF-8" />
-	<xsl:template match="/RECHNUNGEN">
+	<xsl:template match="/">
 		<xsl:copy>
-			<xsl:for-each select="RECHNUNG">
-				<xsl:if	test="RECHNUNGSDETAILS/RECHNUNGSDATUM[translate(./text(), '-', '') > 20101231]">
-					<xsl:copy>
-						<xsl:for-each select="ADRESSAT">
-							<xsl:copy>
-								<xsl:if test="./ANREDE[starts-with(., 'Herr')] or ./ANREDE[starts-with(., 'Frau')]">
-									<xsl:for-each select="./*">
-										<xsl:if test="name(.) = 'ADRESSE'">
-											<xsl:copy-of select="." />
-										</xsl:if>
-									</xsl:for-each>
-								</xsl:if>
-							</xsl:copy>
-						</xsl:for-each>
-						
-						<xsl:for-each select="RECHNUNGSDETAILS">
-							<xsl:copy>
-								<xsl:for-each select="./*">
-									<xsl:if test="name(.) = 'BETRAG'">
-										<xsl:for-each select="./*">
-											<xsl:if test="name(.) = 'BRUTTO_GESAMT'">
-												<xsl:copy-of select="." />
-											</xsl:if>
-										</xsl:for-each>
-									</xsl:if>
-									<xsl:if test="name(.) = 'RECHNUNGSDATUM' or name(.) = 'RECHNUNGSNUMMER'">
-										<xsl:copy-of select="." />
-									</xsl:if>
-								</xsl:for-each>
-							</xsl:copy>
-						</xsl:for-each>
-						
-						<xsl:for-each select="PRODUKTE">
-							<xsl:copy>
-								<xsl:for-each select="PRODUKT">
-									<xsl:copy>
-										<POSITION>
-											<xsl:copy-of select="position()" />											
-										</POSITION>
-										<xsl:for-each select="./*">
-											<xsl:if test="name(.) = 'ART' or name(.) = 'GESAMTPREIS'">
-												<xsl:copy-of select="." />
-											</xsl:if>
-										</xsl:for-each>
-									</xsl:copy>
-								</xsl:for-each>
-							</xsl:copy>
-						</xsl:for-each>
-						
-					</xsl:copy>
-				</xsl:if>
-			</xsl:for-each>
+			<xsl:apply-templates
+				select="RECHNUNGEN/RECHNUNG[number(substring(RECHNUNGSDETAILS/RECHNUNGSDATUM, 1, 4)) &gt; 2010]" />
 		</xsl:copy>
 	</xsl:template>
+	
+	<xsl:template match="RECHNUNG">
+		<xsl:copy>
+			<xsl:copy-of select="ADRESSAT[starts-with(ANREDE, 'Herr') or starts-with(ANREDE, 'Frau')]/ADRESSE" />
+			<xsl:copy-of select="RECHNUNGSDETAILS/RECHNUNGSDATUM" />
+			<xsl:copy-of select="RECHNUNGSDETAILS/RECHNUNGSNUMMER" />
+			<xsl:copy-of select="RECHNUNGSDETAILS/BETRAG/BRUTTO_GESAMT" />
+			<xsl:apply-templates select="PRODUKTE/PRODUKT" />
+		</xsl:copy>
+	</xsl:template>
+	<xsl:template match="PRODUKT">
+		<xsl:copy>
+			<xsl:copy-of select="POSITION" />
+			<xsl:copy-of select="ART" />
+			<xsl:copy-of select="GESAMTPREIS" />
+		</xsl:copy>	
+	</xsl:template>
+	
 </xsl:stylesheet>

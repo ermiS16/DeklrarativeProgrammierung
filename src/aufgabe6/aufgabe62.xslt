@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-<xsl:output method="xml" encoding="UTF-8"/>
+<xsl:output method="text" encoding="UTF-8"/>
 <xsl:template match="/RECHNUNGEN">
 	<xsl:apply-templates select="RECHNUNG"/>
 </xsl:template>
-<xsl:template match="RECHNUNG">	
+<xsl:template match="RECHNUNG[RECHNUNGSDETAILS/BRUTTO_GESAMT &lt; 1000]">	
 	<xsl:for-each select=".">
 		<xsl:text>
 		</xsl:text>

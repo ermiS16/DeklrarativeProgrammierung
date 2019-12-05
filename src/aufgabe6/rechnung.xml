@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<RECHNUNGEN xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<RECHNUNGEN>
 	<RECHNUNG>
 		<UNTERNEHMEN>
 			<NAME>Kleintier Meier GmbH</NAME>
