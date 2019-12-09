@@ -34,7 +34,9 @@
 
 	<xsl:template match="PRODUKT">
 		<xsl:copy>
-			<xsl:copy-of select="POSITION" />
+			<xsl:element name="POSITION">
+				<xsl:number/>			
+			</xsl:element>
 			<xsl:copy-of select="ART" />
 			<xsl:copy-of select="GESAMTPREIS" />
 		</xsl:copy>
